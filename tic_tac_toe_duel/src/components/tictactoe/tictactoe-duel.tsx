@@ -52,12 +52,12 @@ export default component$(() => {
   });
 
   // Handle cell click
-  const handleCellClick = $((idx: number) => {
+  const handleCellClick = $(async (idx: number) => {
     if (winner.value || board.value[idx]) return;
     const next = board.value.slice();
     next[idx] = currentPlayer.value;
     board.value = next;
-    const result = checkGameStatus(next);
+    const result = await checkGameStatus(next);
     if (result) {
       winner.value = result;
     } else {
